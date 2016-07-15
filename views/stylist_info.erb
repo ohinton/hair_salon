@@ -1,7 +1,16 @@
-<h1>Stylist Info Page</h1>
+<h2>Stylist Info Page</h2>
 
 <p>First name: <%= @stylist.first_name %></p>
 <p>Last name: <%= @stylist.last_name %></p>
+
+<p><a class="btn btn-primary" role="button" href="/stylists/<%= @stylist.id() %>/update">Update</a></p>
+
+<form action="/stylists/<%= @stylist.id() %>/delete" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button class = "btn btn-danger" type="submit">Delete</button>
+</form>
+
 
 <h3>Select <%= @stylist.first_name %>'s clients:</h3>
 
@@ -33,8 +42,3 @@
 <% else %>
   <p>There are no clients added yet!</p>
 <% end %>
-
-
-<p><a href="/stylists/<%= @stylist.id() %>/update">Update</a></p>
-
-<p><a href="/">Home</a></p>

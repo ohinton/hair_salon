@@ -1,0 +1,12 @@
+<h2>Client Info Page</h2>
+
+<p>First name: <%= @client.first_name %></p>
+<p>Last name: <%= @client.last_name %></p>
+
+<p><a class="btn btn-primary" role="button" href="/clients/<%= @client.id() %>/update">Update</a></p>
+
+<form action="/clients/<%= @client.id() %>/delete" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button class = "btn btn-danger" type="submit">Delete</button>
+</form>

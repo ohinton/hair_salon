@@ -6,7 +6,7 @@ require('./lib/client')
 require('pg')
 require('pry')
 
-DB = PG.connect({:dbname => 'hair_salon'})
+DB = PG.connect({:dbname => 'hair_salon_test'})
 
 get('/') do
   erb(:index)
@@ -42,6 +42,55 @@ patch('/stylists/:id/update') do
   last_name = params.fetch("last_name")
   @stylist = Stylist.find(params.fetch('id').to_i())
   @stylist.update({:first_name => first_name, :last_name => last_name})
-  @stylists = Stylist.all()
+  @stylists = Stylist.all
   erb(:stylists)
+end
+
+delete("/stylists/:id/delete") do
+  @stylist = Stylist.find(params.fetch("id").to_i())
+  @stylist.delete
+  @stylists = Stylist.all
+  erb(:success)
+end
+
+
+get('/clients') do
+  @clients = Client.all
+  erb(:clients)
+end
+
+post('/clients') do
+  first_name = params.fetch("first_name")
+  last_name = params.fetch("last_name")
+  client = Client.new({:first_name => first_name, :last_name => last_name, :id => nil})
+  client.save()
+  @clients = Client.all
+  erb(:clients)
+end
+
+get("/clients/:id") do
+  @client = Client.find(params.fetch("id").to_i())
+  @clients = Client.all()
+  erb(:client_info)
+end
+
+get('/clients/:id/update') do
+  @client = Client.find(params.fetch("id").to_i())
+  erb(:update_client_form)
+end
+
+patch('/clients/:id/update') do
+  first_name = params.fetch("first_name")
+  last_name = params.fetch("last_name")
+  @client = Client.find(params.fetch('id').to_i())
+  @client.update({:first_name => first_name, :last_name => last_name})
+  @clients = Client.all
+  erb(:clients)
+end
+
+delete("/clients/:id/delete") do
+  @client = Client.find(params.fetch("id").to_i())
+  @client.delete
+  @clients = Client.all
+  erb(:success)
 end

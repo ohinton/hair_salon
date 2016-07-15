@@ -20,7 +20,7 @@ class Stylist
   end
 
   define_method(:save) do
-    stylist = DB.exec("INSERT INTO stylists (first_name, last_name) VALUES ('#{@first_name}', '#{last_name}') RETURNING id;")
+    stylist = DB.exec("INSERT INTO stylists (first_name, last_name) VALUES ('#{@first_name}', '#{@last_name}') RETURNING id;")
     @id = stylist.first.fetch('id').to_i
   end
 

@@ -10,7 +10,7 @@ describe(Client) do
 
   describe("#last_name") do
     it("returns the client's last name") do
-      test_client = Client.new({:first_name => "Olivia", :last_name => "Hinton", :stylist_id => nil, :id => nil})
+      test_client = Client.new({:first_name => "Olivia", :last_name => "Hinton", :stylist_id => 1, :id => nil})
       expect(test_client.last_name()).to(eq("Hinton"))
     end
   end
@@ -23,7 +23,7 @@ describe(Client) do
 
   describe("#save") do
     it("will save the client's info") do
-      test_client = Client.new({:first_name => "Olivia", :last_name => "Hinton", :stylist_id => 1, :id => nil})
+      test_client = Client.new({:first_name => "Olivia", :last_name => "Hinton", :stylist_id => 1})
       test_client.save
       expect(Client.all()).to(eq([test_client]))
     end
