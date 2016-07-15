@@ -1,0 +1,28 @@
+<p>Add a stylist to the database:</p>
+
+<form action="/stylists" method="post">
+  <label for="first_name">First Name:</label>
+  <input required id="first_name" name="first_name" type="text">
+
+  <label for="author">Author:</label>
+  <input id="author" name="author" type="text">
+
+  <button type="submit">Add book</button>
+</form>
+
+
+<% if @books.any?() %>
+  <p>Click on a book to see information about who has it checked out:</p>
+
+  <ul>
+    <% @books.each do |book| %>
+      <li><a class="green" href="/books/<%= book.id() %>"><%= book.title() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no books added yet!</p>
+<% end %>
+
+<p><a class="green" href="/patrons">See all patrons</a></p>
+
+<p><a class="green" href="/">Return to Main Page</a></p>
