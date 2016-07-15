@@ -1,28 +1,29 @@
 <p>Add a stylist to the database:</p>
 
 <form action="/stylists" method="post">
+
   <label for="first_name">First Name:</label>
   <input required id="first_name" name="first_name" type="text">
 
-  <label for="author">Author:</label>
-  <input id="author" name="author" type="text">
+  <label for="last_name">Last Name:</label>
+  <input required id="last_name" name="last_name" type="text">
 
-  <button type="submit">Add book</button>
+  <button type="submit">Add</button>
 </form>
 
 
-<% if @books.any?() %>
-  <p>Click on a book to see information about who has it checked out:</p>
+<% if @stylists.any?() %>
+  <p>Click on a stylist for more info:</p>
 
   <ul>
-    <% @books.each do |book| %>
-      <li><a class="green" href="/books/<%= book.id() %>"><%= book.title() %></a></li>
+    <% @stylists.each do |stylist| %>
+      <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.first_name() %></a></li>
     <% end %>
   </ul>
 <% else %>
-  <p>There are no books added yet!</p>
+  <p>There are no stylists added yet!</p>
 <% end %>
 
-<p><a class="green" href="/patrons">See all patrons</a></p>
+<p><a href="/clients">See all clients</a></p>
 
-<p><a class="green" href="/">Return to Main Page</a></p>
+<p><a href="/">Home</a></p>

@@ -1,0 +1,12 @@
+<h3>Update stylist info</h3>
+
+<form action="/stylists/<%= @stylist.id() %>/update" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label for='first_name'>First Name:</label>
+  <input id='first_name' name='first_name' type='text'>
+
+  <label for='last_name'>Last Name:</label>
+  <input id='last_name' name='last_name' type='text'>
+
+  <button type="submit">Update</button>
+</form>

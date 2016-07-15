@@ -59,4 +59,16 @@ describe(Stylist) do
     end
   end
 
+  describe('#clients') do
+  it('will display a list of clients assigned to a particular stylist') do
+    test_stylist = Stylist.new({:first_name => "Test First", :last_name => "Test Last", :id => nil})
+    test_stylist.save
+    client1 = Client.new({:first_name => "Olivia", :last_name => "Hinton", :stylist_id => test_stylist.id()})
+    client1.save()
+    client2 = Client.new({:first_name => "Ally", :last_name => "Layton", :stylist_id => test_stylist.id()})
+    client2.save()
+    expect(test_stylist.clients()).to(eq([client1, client2]))
+  end
+end
+
 end
