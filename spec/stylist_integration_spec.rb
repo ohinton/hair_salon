@@ -97,3 +97,18 @@ describe('the delete client path', {:type => :feature}) do
     expect(page).to have_content("Record deleted!")
   end
 end
+
+describe('the add a client to a stylist path', {:type => :feature}) do
+  it('adds a client to a stylist') do
+    test_stylist = Stylist.new({:first_name => "Paul", :last_name => "Mitchell", :id => nil})
+    test_stylist.save
+    test_client = Client.new({:first_name => "Ally", :last_name => "Layton", :id => nil})
+    test_client.save
+    visit ('/stylists')
+    expect(page).to have_content("Paul")
+    click_link("Paul")
+    expect(page).to have_content("Stylist Info Page")
+
+
+  end
+end

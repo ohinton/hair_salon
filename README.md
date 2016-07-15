@@ -6,6 +6,10 @@
 
 This website app was built for Moxie's Hair Salon to streamline the salon owner's scheduling process.
 
+## Known Bugs
+
+7/15/16: Still working on adding a client to a stylist.
+
 ## Database Setup Instructions
 
 Open a PSQL terminal and run these commands:
@@ -14,7 +18,7 @@ Open a PSQL terminal and run these commands:
 
 `CREATE TABLE stylists (id serial PRIMARY KEY, first_name varchar, last_name varchar);`
 
-`CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar, last_name varchar);`
+`CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar, last_name varchar, stylist_id int);`
 
 ## General Setup Instructions
 

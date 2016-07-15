@@ -17,7 +17,6 @@
 <% if @clients.any?() %>
   <form action="/stylists/<%= @stylist.id %>" method="post">
     <input type="hidden" name="_method" value="patch">
-
     <% @clients.each() do |client| %>
       <div class="checkbox">
         <label>
@@ -26,7 +25,7 @@
       </div>
     <% end %>
 
-    <button type="submit">Add clients</button>
+    <button class="btn btn-success" type="submit">Add clients</button>
   </form>
 <% end %>
 
@@ -40,5 +39,6 @@
     <% end %>
   </ul>
 <% else %>
-  <p>There are no clients added yet!</p>
+  <br>
+
 <% end %>

@@ -32,6 +32,15 @@ get("/stylists/:id") do
   erb(:stylist_info)
 end
 
+patch("/stylists/:id") do
+  stylist_id = params.fetch("id").to_i()
+  @stylist = Stylist.find(stylist_id)
+  client_ids = params.fetch("client_ids")
+  @stylist.update({:client_ids => client_ids})
+  @clients = clients.all()
+  erb(:stylist_info)
+end
+
 get('/stylists/:id/update') do
   @stylist = Stylist.find(params.fetch("id").to_i())
   erb(:update_stylist_form)
@@ -62,7 +71,7 @@ end
 post('/clients') do
   first_name = params.fetch("first_name")
   last_name = params.fetch("last_name")
-  client = Client.new({:first_name => first_name, :last_name => last_name, :id => nil})
+  client = Client.new({:first_name => first_name, :last_name => last_name})
   client.save()
   @clients = Client.all
   erb(:clients)

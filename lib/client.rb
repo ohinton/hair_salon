@@ -1,9 +1,10 @@
 class Client
-  attr_reader(:first_name, :last_name, :id)
+  attr_reader(:first_name, :last_name, :id, :stylist_id)
 
   define_method(:initialize) do |attributes|
     @first_name = attributes.fetch(:first_name)
     @last_name = attributes.fetch(:last_name)
+    @stylist_id = attributes[:stylist_id]
     @id = attributes[:id]
   end
 
@@ -13,8 +14,9 @@ class Client
     returned_clients.each do |client|
       first_name = client.fetch("first_name")
       last_name = client.fetch("last_name")
+      stylist_id = client.fetch("stylist_id")
       id = client.fetch("id").to_i()
-      clients.push(Client.new({:first_name => first_name, :last_name => last_name, :id => id}))
+      clients.push(Client.new({:first_name => first_name, :last_name => last_name, :stylist_id => stylist_id, :id => id}))
     end
     clients
   end
@@ -32,8 +34,9 @@ class Client
     client = DB.exec("SELECT * FROM clients WHERE id = #{id};")
     first_name = client.first.fetch("first_name")
     last_name = client.first.fetch("last_name")
+    stylist_id = client.first.fetch("stylist_id")
     id = client.first.fetch("id").to_i
-    Client.new({:first_name => first_name, :last_name => last_name, :id => id})
+    Client.new({:first_name => first_name, :last_name => last_name, :stylist_id => stylist_id, :id => id})
   end
 
   define_method(:update) do |attributes|
