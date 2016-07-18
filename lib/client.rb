@@ -22,7 +22,7 @@ class Client
   end
 
   define_method(:save) do
-    client = DB.exec("INSERT INTO clients (first_name, last_name) VALUES ('#{@first_name}', '#{@last_name}') RETURNING id;")
+    client = DB.exec("INSERT INTO clients (first_name, last_name, stylist_id) VALUES ('#{@first_name}', '#{@last_name}', #{@stylist_id}) RETURNING id;")
     @id = client.first.fetch('id').to_i
   end
 
@@ -48,7 +48,5 @@ class Client
   define_method(:delete) do
     DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
   end
-
-
 
 end

@@ -65,15 +65,20 @@ end
 
 get('/clients') do
   @clients = Client.all
+  @stylists = Stylist.all
   erb(:clients)
 end
 
 post('/clients') do
   first_name = params.fetch("first_name")
   last_name = params.fetch("last_name")
-  client = Client.new({:first_name => first_name, :last_name => last_name})
-  client.save()
+  stylist_id = params.fetch("stylist_id").to_i
+  @client = Client.new({:first_name => first_name, :last_name => last_name, :stylist_id => stylist_id})
+
+
+  @client.save()
   @clients = Client.all
+  @stylists = Stylist.all
   erb(:clients)
 end
 
@@ -85,15 +90,18 @@ end
 
 get('/clients/:id/update') do
   @client = Client.find(params.fetch("id").to_i())
+  @stylists = Stylist.all
   erb(:update_client_form)
 end
 
 patch('/clients/:id/update') do
   first_name = params.fetch("first_name")
   last_name = params.fetch("last_name")
+  stylist_id = params.fetch("stylist_id")
   @client = Client.find(params.fetch('id').to_i())
-  @client.update({:first_name => first_name, :last_name => last_name})
+  @client.update({:first_name => first_name, :last_name => last_name, :stylist_id => stylist_id})
   @clients = Client.all
+  @stylists = Stylist.all
   erb(:clients)
 end
 

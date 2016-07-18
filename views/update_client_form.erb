@@ -1,6 +1,6 @@
 <h3>Update client info</h3>
 
-<form class="form-inline" action="/clients/<%= @client.id() %>/update" method="post">
+<form action="/clients/<%= @client.id() %>/update" method="post">
   <input name="_method" type="hidden" value="patch">
   <div class="form-group">
     <label for='first_name'>First Name:</label>
@@ -10,5 +10,17 @@
     <label for='last_name'>Last Name:</label>
     <input id='last_name' name='last_name' type='text' class="form-control">
   </div>
+
+  <% if @stylists.any?() %>
+  <p>Select this client's stylist:</p>
+    <input type="hidden" name="_method" value="patch">
+    <% @stylists.each() do |stylist| %>
+      <div class="radio">
+        <label>
+          <input id='stylist_id' name='stylist_id' type="radio" value="<%= stylist.id() %>">  <%=stylist.first_name() %>
+        </label>
+      </div>
+    <% end %>
+<% end %>
   <button class="btn btn-primary" type="submit">Update</button>
 </form>

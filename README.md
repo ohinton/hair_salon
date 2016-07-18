@@ -20,6 +20,8 @@ Open a PSQL terminal and run these commands:
 
 `CREATE TABLE clients (id serial PRIMARY KEY, first_name varchar, last_name varchar, stylist_id int);`
 
+`CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;`
+
 ## General Setup Instructions
 
 * Clone this repository

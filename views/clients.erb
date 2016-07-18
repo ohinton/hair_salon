@@ -16,7 +16,7 @@
 
 <p>Add a client to the database:</p>
 
-<form class="form-inline" action="/clients" method="post">
+<form action="/clients" method="post">
   <div class="form-group">
     <label for="first_name">First Name:</label>
     <input required id="first_name" name="first_name" type="text" class="form-control">
@@ -25,5 +25,18 @@
     <label for="last_name">Last Name:</label>
     <input required id="last_name" name="last_name" type="text" class="form-control">
   </div>
+
+  <% if @stylists.any?() %>
+  <p>Select this client's stylist:</p>
+    <input type="hidden" name="_method">
+    <% @stylists.each() do |stylist| %>
+      <div class="radio">
+        <label>
+          <input id='stylist_id' name='stylist_id' type="radio" value="<%= stylist.id() %>">  <%=stylist.first_name() %>
+        </label>
+      </div>
+    <% end %>
+<% end %>
+
   <button class="btn btn-primary" type="submit">Add</button>
 </form>
