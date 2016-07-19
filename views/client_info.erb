@@ -3,10 +3,18 @@
 <p>First name: <%= @client.first_name %></p>
 <p>Last name: <%= @client.last_name %></p>
 
-<p><a class="btn btn-primary" role="button" href="/clients/<%= @client.id() %>/update">Update</a></p>
+<% if @client.stylist_id.to_i > 0 %>
+  <p>Stylist: <%= @client.stylist %> </p>
+<% else %>
+  <p>Stylist:</p>
+<% end %>
+
+<p><a class="btn btn-success" role="button" href="/clients/<%= @client.id() %>/update">Update</a></p>
 
 <form action="/clients/<%= @client.id() %>/delete" method="post">
   <input name="_method" type="hidden" value="delete">
-
   <button class = "btn btn-danger" type="submit">Delete</button>
 </form>
+
+<br>
+<p><a class="btn btn-primary" role="button" href = "/">Home</a></p>

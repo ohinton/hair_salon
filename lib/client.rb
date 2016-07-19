@@ -42,11 +42,17 @@ class Client
   define_method(:update) do |attributes|
     @first_name = attributes.fetch(:first_name)
     @last_name = attributes.fetch(:last_name)
-    DB.exec("UPDATE clients SET first_name = '#{@first_name}', last_name = '#{@last_name}' WHERE id = #{self.id};")
+    @stylist_id = attributes.fetch(:stylist_id)
+    DB.exec("UPDATE clients SET first_name = '#{@first_name}', last_name = '#{@last_name}', stylist_id = #{@stylist_id}  WHERE id = #{self.id};")
   end
 
   define_method(:delete) do
     DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
+  end
+
+  define_method(:stylist) do
+    stylist = DB.exec("SELECT first_name FROM stylists WHERE id = #{self.stylist_id};")
+    first_name = stylist.first.fetch("first_name")
   end
 
 end

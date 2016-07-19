@@ -63,5 +63,4 @@ class Stylist
     stylist_clients
   end
 
-
 end

@@ -10,35 +10,3 @@
 
   <button class = "btn btn-danger" type="submit">Delete</button>
 </form>
-
-
-<h3>Select <%= @stylist.first_name %>'s clients:</h3>
-
-<% if @clients.any?() %>
-  <form action="/stylists/<%= @stylist.id %>" method="post">
-    <input type="hidden" name="_method" value="patch">
-    <% @clients.each() do |client| %>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="client_ids[]" value="<%= client.id() %>"><%= client.first_name %>
-        </label>
-      </div>
-    <% end %>
-
-    <button class="btn btn-success" type="submit">Add clients</button>
-  </form>
-<% end %>
-
-
-<% if @stylist.clients().any?() %>
-  <h3>Here are <%= @stylist.first_name %>'s saved clients::</h3>
-
-  <ul>
-    <% @stylist.clients().each() do |client| %>
-      <li><%= client.first_name() %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <br>
-
-<% end %>
