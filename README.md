@@ -6,10 +6,6 @@
 
 This website app was built for Moxie's Hair Salon to streamline the salon owner's scheduling process.
 
-## Known Bugs
-
-7/15/16: Still working on adding a client to a stylist.
-
 ## Database Setup Instructions
 
 Open a PSQL terminal and run these commands:
